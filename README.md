@@ -25,8 +25,6 @@ define('PANELCAT', 'CMSE Widgets');
 define('PANELICON', 'fa fa-plug');
 ```
 
-See widget development documentation at https://developers.elementor.com/elementor-controls/
-
 ## Creating Widgets
 Add widgets to `wp-content/elementor-widgets/widgets` If a prefereed location is desired, be sure to set the path in the above noted constants
 
@@ -57,5 +55,7 @@ Each widget folder will consist of 2 files with exact matching names of the fold
  </fields>
 </form>
 ```
- 
+Elementor icons at https://elementor.github.io/elementor-icons/
+
+![example-xml-field](https://websitedons.net/assets/xample-xml-field.jpg)
  
