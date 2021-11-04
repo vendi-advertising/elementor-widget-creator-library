@@ -69,4 +69,24 @@ Elementor icons at https://elementor.github.io/elementor-icons/
 ![example-xml-field](https://github.com/WebsiteDons/elementor-widget-creator-library/blob/main/newly-added-widget.jpg?raw=true "Example output")
 
 ![example-xml-field](https://github.com/WebsiteDons/elementor-widget-creator-library/blob/main/example-xml-field.jpg?raw=true "Example output")
- 
+
+## SML Markup Attributes
+
+* type - the field type
+* name - the field name
+* label - the field label
+* description - text displayed below a field in admininistration
+* hint - the placeholder attribute shorthand
+* default - a default value set
+* labelblock - an instruction to format the field and label vertically instead of default inline
+* options - for select fieltype
+* args - used in assocition with options if options are from a function
+* note - text displayed before a field for various instructions
+* min - used for number field
+* max - used for number fields
+* gtype - used for group controls to define the field type
+* gtypes - used for various group controls to add variations
+* selectors - used to apply array multiple value to {{WRAPPER}}
+* selector - similar to previous but single value
+
+## Field Types
