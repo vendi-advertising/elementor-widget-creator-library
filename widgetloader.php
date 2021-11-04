@@ -12,6 +12,10 @@ https://developers.elementor.com/elementor-controls/
 
 defined('ABSPATH') || exit('CMSEnergizer.com');
 
+/*
+Edit the constants as need to change paths and othe text values
+*/
+
 define('CSSFILEURL', get_bloginfo('url').'/wp-content/elementor-widgets/elementor-alt.css');
 define('CSSID', 'elementor-alt');
 define('WIDGETPATH', WP_CONTENT_DIR.'/elementor-widgets/widgets/');
