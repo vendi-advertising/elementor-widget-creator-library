@@ -36,4 +36,18 @@ Each widget folder will consist of 2 files with exact matching names of the fold
  * image.xml
  * display.php
  
- See the included demo files
+ See the included demo files `elementor-widgets/widgets/image`
+ 
+ ## XML Structure
+ 
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<form icon="eicon-countdown" cat="basic">
+	<fields>
+		<fieldset id="cmse_countdown" tab="tab" label="Clock Settings">
+  </fieldset>
+ </fields>
+</form>
+```
+ 
+ 
