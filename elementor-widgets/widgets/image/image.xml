@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form icon="eicon-post-list" cat="basic">
+	<fields>
+		<fieldset id="tabimage" tab="tab" note="This is text description of the panel" label="An Image">
+		<field 
+		type="text" 
+		name="imagetxt" 
+		default="The Title" 
+		label="Image Title" 
+		/>
+		<field 
+		type="textarea" 
+		name="imagetext" 
+		default="Write stuff" 
+		label="Description" 
+		labelblock="1"
+		/>
+		</fieldset>
+	</fields>
+</form>
