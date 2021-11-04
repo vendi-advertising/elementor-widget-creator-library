@@ -218,7 +218,7 @@ $v = (object)[
 'typo'=>\Elementor\Group_Control_Typography::get_type(),
 'cssfilter'=>\Elementor\Group_Control_Css_Filter::get_type(),
 'rpt' => new \Elementor\Repeater()
-];
+]; 
 
 return $v;
 }
