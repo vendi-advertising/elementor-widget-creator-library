@@ -42,11 +42,20 @@ Each widget folder will consist of 2 files with exact matching names of the fold
 <?xml version="1.0" encoding="utf-8"?>
 <form icon="eicon-image" cat="basic">
  <fields>
-  <fieldset id="animage" tab="tab" label="The Slide Panel Label">
+  <fieldset id="animage" tab="tab" note="This is text description of the panel" label="An Image">
    <field 
    type="text" 
    name="thefieldname" 
-   label="The New Text" 
+   label="Image Title" 
+   description="Some details about the field" 
+   hint="The place holder text" 
+   default="A default value" 
+   />
+   <field 
+   type="textarea" 
+   name="thedescription" 
+   label="Description" 
+   labelblock="1" 
    description="Some details about the field" 
    hint="The place holder text" 
    default="A default value" 
