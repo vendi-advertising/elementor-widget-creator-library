@@ -42,9 +42,17 @@ Each widget folder will consist of 2 files with exact matching names of the fold
  
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<form icon="eicon-countdown" cat="basic">
+<form icon="eicon-image" cat="basic">
  <fields>
-  <fieldset id="cmse_countdown" tab="tab" label="Clock Settings">
+  <fieldset id="animage" tab="tab" label="The Slide Panel Label">
+   <field 
+   type="text" 
+   name="thefieldname" 
+   label="The New Text" 
+   description="Some details about the field" 
+   hint="The place holder text" 
+   default="A default value" 
+   />
   </fieldset>
  </fields>
 </form>
