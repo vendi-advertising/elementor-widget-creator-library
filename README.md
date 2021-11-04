@@ -24,3 +24,12 @@ define('PANELICON', 'fa fa-plug');
 ```
 
 See widget development documentation at https://developers.elementor.com/elementor-controls/
+
+## Creating Widgets
+Add widgets to `wp-content/elementor-widgets/widgets` If a prefereed location is desired, be sure to set the path in the above noted constants
+
+Each widget folder will consist of 2 files with exact matching names of the folder and one display ie: 
+* image
+** image.php
+** image.xml
+** display.php
