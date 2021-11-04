@@ -57,5 +57,5 @@ Each widget folder will consist of 2 files with exact matching names of the fold
 ```
 Elementor icons at https://elementor.github.io/elementor-icons/
 
-![example-xml-field](https://websitedons.net/assets/xample-xml-field.jpg?raw=true "Example output")
+![example-xml-field](https://github.com/WebsiteDons/elementor-widget-creator-library/blob/main/example-xml-field.jpg?raw=true "Example output")
  
