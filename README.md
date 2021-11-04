@@ -1,5 +1,5 @@
 # elementor-widget-creator-library
-This class which serves as a simplified method to easily and quickly create widgets for WordPress page builder plugin called Elementor
+This class which serves as a simplified method to easily and quickly create widgets for WordPress page builder plugin called Elementor. Simply create widget form fields using a XML markup instead of writing complex PHP.
 
 ## Method
 Place file `widgetloader.php` in `wp-content/mu-plugins` to autoload the class
@@ -33,3 +33,5 @@ Each widget folder will consist of 2 files with exact matching names of the fold
  * image.php
  * image.xml
  * display.php
+ 
+ See the included demo files
