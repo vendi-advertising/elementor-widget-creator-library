@@ -1,4 +1,6 @@
 # elementor-widget-creator-library
+**This is not a plugin** It is for developers who wish to quickly create plugins specifically for Elementor.
+
 This class which serves as a simplified method to easily and quickly create widgets for WordPress page builder plugin called Elementor. Simply create widget form fields using a XML markup instead of writing complex PHP.
 
 ## Method
