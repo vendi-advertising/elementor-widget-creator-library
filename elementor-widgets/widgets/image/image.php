@@ -15,7 +15,7 @@ class Cmse_image_Widget extends \Elementor\Widget_Base
 	}
 	
 	public function get_title() {
-		return 'CMSE '.$this->get_name();
+		return WIDGETPREFIX.' '.$this->get_name();
 	}
 	
 	public function get_icon() {
