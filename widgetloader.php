@@ -22,6 +22,8 @@ define('COPYDIR', WP_CONTENT_DIR.'/elementor-widgets/svg');
 define('PANELID', 'cmse-widgetcat');
 define('PANELCAT', 'CMSE Widgets'); 
 define('PANELICON', 'fa fa-plug');
+// set the prefered prefix which displays on the widget button
+define('WIDGETPREFIX', 'CMSE');
 
 
 // load shpaes class
