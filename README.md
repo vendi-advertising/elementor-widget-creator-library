@@ -70,8 +70,19 @@ Elementor icons at https://elementor.github.io/elementor-icons/
 
 ![example-xml-field](https://github.com/WebsiteDons/elementor-widget-creator-library/blob/main/example-xml-field.jpg?raw=true "Example output")
 
-## SML Markup Attributes
+## XML Markup Attributes
 
+**Form attribs**
+* icon - required to properly display the widget in the list (see above link for elementor icons)
+* cat - required to determine the panel section where the widget will display
+
+**Fieldset Attribs**
+* id - absolutely required to create unique panel ID
+* tab - required to determine the tabbed group //available values -  tab | tabstyle | tabadv
+* label - required for the panel title
+* note - to add text description immediatedly below the panel handle
+
+**Field Attribs**
 * type - the field type
 * name - the field name
 * label - the field label
