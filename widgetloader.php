@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: CMSE Elementor Widget Developer Library
-Plugin URI: http://www.cmsenergizer.com
+Plugin URI: https://github.com/WebsiteDons/elementor-widget-creator-library
 Description: Develop widgets for Elementor with intuitive markup
-Version: 1.0
+Version: 1.0.1
 Author: CMSEnergizer.com
-Author URI: http://www.cmsenergizer.com
+Author URI: https://github.com/WebsiteDons/elementor-widget-creator-library
 Copyright 2014 CMSEnergizer.com
 https://developers.elementor.com/elementor-controls/
 */
@@ -29,7 +29,7 @@ use \Elementor\Shapes;
 
 final class Cmse_Elementor_Widgets 
 {
-	const VERSION = '1.0.0';
+	const VERSION = '1.0.1';
 	const MINIMUM_ELEMENTOR_VERSION = '2.0.0';
 	const MINIMUM_PHP_VERSION = '7.0';
 
@@ -136,7 +136,7 @@ final class Cmse_Elementor_Widgets
 
 	## Define Elementor core controls with minimal type ID
 	// just for simplification
-	protected function ctr()
+	protected static function ctr()
 	{
 		$v = (object)[
 		'tab'=>\Elementor\Controls_Manager::TAB_CONTENT,
@@ -187,7 +187,7 @@ final class Cmse_Elementor_Widgets
 		$icon = (string)$form->icon;
 		$cat = (string)$form->cat;
 		$fields= $tabstart= $tabend='';
-		$f = $this->ctr();
+		$f = self::ctr();
 
 		foreach($formfile->fields->fieldset as $fieldset)
 		{
@@ -201,7 +201,7 @@ final class Cmse_Elementor_Widgets
 			if( !empty($fsetnote) ) 
 			{
 				$obj->add_control($fsetid.'_note',['type'=>$f->readme,'raw'=>$fsetnote]);
-				dd_action('elementor/editor/footer', function() use($fsetid) 
+				add_action('elementor/editor/footer', function() use($fsetid) 
 				{
 					echo '
 					<style>
