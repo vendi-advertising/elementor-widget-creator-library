@@ -247,12 +247,7 @@ final class Cmse_Elementor_Widgets
 				else
 				// output HTML or plain text 
 				if( $type == 'readme' ) {
-					$obj->add_control('readme-'.(isset($att->name) ? (string)$att->name:$i),[
-						'type'=>$f->readme,
-						'raw'=>(string)$att->note,
-						'content_classes'=>(isset($att->class) ? (string)$att->class:null),
-						'label'=>(isset($att->label) ? (string)$att->label:null)
-					]);
+					self::printFieldReadme($att, $type, $obj, $f, $i);
 				}
 				else
 				// repeat fields
@@ -310,12 +305,7 @@ final class Cmse_Elementor_Widgets
 			else
 			// output HTML or plain text 
 			if( $type == 'readme' ) {
-				$obj->add_control('readme-'.(isset($att->name) ? (string)$att->name:$i),[
-				'type'=>$f->readme,
-				'raw'=>(string)$att->note,
-				'content_classes'=>(isset($att->class) ? (string)$att->class:null),
-				'label'=>(isset($att->label) ? (string)$att->label:null)
-				]);
+				self::printFieldReadme($att, $type, $obj, $f, $i);
 			}
 			else
 			{
@@ -359,6 +349,17 @@ final class Cmse_Elementor_Widgets
 		'description'=>$fv->note,
 		'selectors'=>$fv->selectors,
 		'separator'=>$fv->separator
+		]);
+	}
+	
+	// print readme field
+	protected static function printFieldReadme($fv, $type, $obj, $f, $num) 
+	{
+		$obj->add_control('readme-'.(isset($fv->name) ? (string)$fv->name:$num),[
+		'type'=>$f->readme,
+		'raw'=>(string)$fv->note,
+		'content_classes'=>(isset($fv->class) ? (string)$fv->class:null),
+		'label'=>(isset($fv->label) ? (string)$fv->label:null)
 		]);
 	}
 	
