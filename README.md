@@ -49,16 +49,24 @@ Each widget folder will consist of 2 files with exact matching names of the fold
    type="text" 
    name="thefieldname" 
    label="Image Title" 
-   description="Some details about the field" 
+   note="Some details about the field" 
    hint="The place holder text" 
    default="A default value" 
    />
    <field 
+   type="list" 
+   name="thelist" 
+   options="{'':'None','choice':'The Choice','newchoice':'New Choice'}" 
+   default="choice" 
+   label="The List" 
+   />
+   <field 
    type="textarea" 
    name="thedescription" 
+   condition="{'thelist':'newchoice'}" 
    label="Description" 
    labelblock="1" 
-   description="Some details about the field" 
+   note="Some details about the field" 
    hint="The place holder text" 
    default="A default value" 
    />
