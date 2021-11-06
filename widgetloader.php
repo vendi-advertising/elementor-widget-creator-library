@@ -15,7 +15,6 @@ defined('ABSPATH') || exit('CMSEnergizer.com');
 /*
 Edit the constants as need to change paths and othe text values
 */
-
 define('CSSFILEURL', get_bloginfo('url').'/wp-content/elementor-widgets/elementor-alt.css');
 define('CSSID', 'elementor-alt');
 define('WIDGETPATH', WP_CONTENT_DIR.'/elementor-widgets/widgets/');
@@ -32,6 +31,7 @@ define('WIDGETPREFIX', 'CMSE');
 
 // load shpaes class
 use \Elementor\Shapes;
+
 
 final class Cmse_Elementor_Widgets 
 {
@@ -188,13 +188,14 @@ final class Cmse_Elementor_Widgets
 	## Load Fields From XML Markup
 	public static function fields($xml,$obj)
 	{
-		$formfile = simplexml_load_file(WIDGETPATH.$xml.'/'.$xml.'.xml');
+		$formfile = simplexml_load_file(WIDGETPATH.'/'.$xml.'/'.$xml.'.xml');
 		$form = $formfile->attributes();
 		$icon = (string)$form->icon;
 		$cat = (string)$form->cat;
 		$fields= $tabstart= $tabend='';
 		$f = self::ctr();
-
+		$rpt = new \Elementor\Repeater();
+		
 		foreach($formfile->fields->fieldset as $fieldset)
 		{
 			$fset = $fieldset->attributes();
@@ -202,7 +203,7 @@ final class Cmse_Elementor_Widgets
 			$fsetid = (string)$fset->id;
 			$tabtype = (string)$fset->tab;
 			$fsetnote = (isset($fset->note) ? '<div class="tabnote">'.(string)$fset->note.'</div>':null);
-
+	
 			$obj->start_controls_section($fsetid,['label'=>$fsetlbl,'tab'=>$f->$tabtype]);
 			if( !empty($fsetnote) ) 
 			{
@@ -212,110 +213,265 @@ final class Cmse_Elementor_Widgets
 					echo '
 					<style>
 					.elementor-control-'.$fsetid.'_note {
-					padding:0 !important; 
-					padding-bottom: 8px !important;
+						padding:0 !important; 
+						padding-bottom: 8px !important;
 					}
 					.elementor-control-'.$fsetid.' {
-					padding-bottom: 0 !important;
+						padding-bottom: 0 !important;
 					}
 					</style>';
 				});
 			}
 
-			$i='';
+			$i=null;
 			foreach($fieldset->field as $field) 
 			{
 				$i++;
 				$att = $field->attributes();
+				$fv = self::fieldval($att);
 				$type = (string)$att->type;
-				$name = (string)$att->name;
-				$lbl = (isset($att->label) ? (string)$att->label:null);
-				$hint = (isset($att->hint) ? (string)$att->hint:null);
-				$def = (isset($att->default) ? (string)$att->default:null);
-				$gtype = (isset($att->gtype) ? (string)$att->gtype:null);
-				$gtypes = (isset($att->gtypes) ? explode(',',(string)$att->gtypes):null);
-				$note = (isset($att->note) ? (string)$att->note:null);
-				$separator = (isset($att->line) ? (string)$att->line:null);
-				$configs = (isset($att->configs) ? (string)$att->configs:null);
-				$valueformat = (isset($att->valueformat) ? (string)$att->valueformat:null);
-				$lblblock = (isset($att->labelblock) ? true:null);
-
-				// prepare options
-				// if the function does not require arguments, set the args="" attribute to any value
-				// just to set it
-				$options=[];
-				if( !empty($att->options) ) 
-				{
-					$arr = (string)$att->options;
-					if( strstr($arr, '::') && !empty($att->args) ) {
-						$options = call_user_func($arr,(string)$att->args);
-					}else
-					if( strstr($arr, '|') ) 
-					{
-						$elements = explode(',', $arr);
-						foreach($elements as $element) {
-							list($optval,$optlbl) = explode('|',$element);
-							$options[$optval] = $optlbl;
-						}
-					}
-				}
-
-				//selectors
-				$selectors=[];
-				if( isset($att->selectors) ) {
-					list($classes,$cssval) = explode('|',(string)$att->selectors);
-					$selectors[$classes] = $cssval;
-				}
-
-				//configs
-				$config=[];
-				if( !empty($configs) ) {
-					$parts = explode(',',$configs);
-					foreach($parts as $part) {
-						list($configindex, $configval) = explode('|',$part);
-						$config[$configindex] = $configval;
-					}
-				}
-
-				// fields
+				$gtype = $fv->gtype;
+				
+				
+				## Do Controls
+				// group controls
 				if( $type == 'controlgroup' ) 
 				{
-					$obj->add_group_control($f->$gtype,[
-					'name'=>$name,
-					'types' =>$gtypes,
-					'label' =>$lbl,
-					'description'=>$note,
-					'selectors'=>$selectors,
-					'separator'=>$separator
-					]);
+					self::printFieldGroup($fv,$type,$gtype,$obj,$f);
 				}
 				else
+				// horizontal line
 				if( $type == 'hr' ) {
 					$obj->add_control('hr'.$i,['type'=>$f->hr]);
 				}
 				else
+				// repeat fields
+				if( $type == 'repeat' ) 
 				{
-					$obj->add_control($name,[
-					'type'=>$f->$type,
-					'options'=>$options,
-					'default'=>$def,
-					'placeholder'=>$hint,
-					'label'=>$lbl,
-					'description'=>$note,
-					'selectors'=>$selectors,
-					'separator'=>$separator,
-					'picker_options'=>$config,
-					'return_value'=>$valueformat,
-					'label_block'=>$lblblock
+					self::repeat($field->repeat, $rpt, $f);
+					
+					$titlefield = (isset($att->titlefield) ? '{{{'.(string)$att->titlefield.'}}}':null);
+					$default = [];
+					
+					$obj->add_control($fv->name, [
+					'type'=>$f->repeat,
+					'fields'=>$rpt->get_controls(),
+					'title_field'=>$titlefield,
+					'show_label'=>$fv->showlabel,
+					'label'=>$fv->lbl,
+					'prevent_empty'=>false
 					]);
 				}
+				else
+				// standard controls
+				{
+					self::printFieldStandard($fv,$type,$gtype,$obj,$f);
+				}
 			}
-
+			
 			$obj->end_controls_section();
 		}
-
+		
 		return ['icon'=>$icon,'category'=>$cat];
 	}
+	
+	
+	
+	// Repeater fields process
+	protected static function repeat($fields,$obj, $f)
+	{
+		$i=null;
+		foreach($fields as $atts) 
+		{
+			$i++;
+			$att = $atts->attributes();
+			$fv = self::fieldval($att);
+			$type = (string)$att->type;
+			$gtype = $fv->gtype;
+			
+			if( $type == 'controlgroup' ) 
+			{
+				self::printFieldGroup($fv,$type,$gtype,$obj,$f);
+			}
+			else
+			if( $type == 'hr' ) {
+				$obj->add_control('hr'.$i,['type'=>$f->hr]);
+			}
+			else
+			{
+				self::printFieldStandard($fv,$type,$gtype,$obj,$f);
+			}
+		}
+	}
+	
+	
+	// standard controls printer
+	protected static function printFieldStandard($fv, $type, $gtype, $obj, $f) 
+	{
+		$obj->add_control($fv->name,[
+		'type'=>$f->$type,
+		'options'=>$fv->options,
+		'default'=>$fv->def,
+		'placeholder'=>$fv->hint,
+		'label'=>$fv->lbl,
+		'description'=>$fv->note,
+		'selectors'=>$fv->selectors,
+		'separator'=>$fv->separator,
+		'picker_options'=>$fv->config,
+		'return_value'=>$fv->valueformat,
+		'label_block'=>$fv->lblblock,
+		'label_on'=>$fv->labelon,
+		'label_off'=>$fv->labeloff,
+		'conditions'=>$fv->condition,
+		'rows'=>$fv->rows,
+		'show_label'=>$fv->showlabel,
+		'show_external'=>$fv->extlink,
+		]);
+	}
+	
+	// group controls printer
+	protected static function printFieldGroup($fv, $type, $gtype, $obj, $f) 
+	{
+		$obj->add_group_control($f->$gtype,[
+		'name'=>$fv->name,
+		'types' =>$fv->gtypes,
+		'label' =>$fv->lbl,
+		'description'=>$fv->note,
+		'selectors'=>$fv->selectors,
+		'separator'=>$fv->separator
+		]);
+	}
+	
+	// values processor
+	protected static function fieldVal($att)
+	{
+		$def=null;
+		if( isset($att->default) ) 
+		{
+			if( (string)$att->type == 'url' ) 
+			{
+				$def = self::stringToArray((string)$att->default);
+			}else{
+				$def = (string)$att->default;
+			}
+		}
+		
+		$options='';
+		if( !empty($att->options) ) 
+		{
+			$options = self::options((string)$att->options);
+		}
+		
+		//selectors
+		$selectors=[];
+		if( isset($att->selectors) ) {
+			list($classes,$cssval) = explode('|',(string)$att->selectors);
+			$selectors[$classes] = $cssval;
+		}
+		
+		//configs
+		$config=[];
+		if( !empty($fv->configs) ) {
+			$parts = explode(',',$fv->configs);
+			foreach($parts as $part) {
+				list($configindex, $configval) = explode('|',$part);
+				$config[$configindex] = $configval;
+			}
+		}
+		
+		// condition handler
+		$condition=null;
+		if( isset($att->condition) )
+		{
+			$condition = self::condition((string)$att->condition);
+		}
+			
+		$vals = (object)[
+		'type'=> (string)$att->type,
+		'name'=> (string)$att->name,
+		'lbl'=> (isset($att->label) ? (string)$att->label:null),
+		'hint'=> (isset($att->hint) ? (string)$att->hint:null),
+		'gtype'=> (isset($att->gtype) ? (string)$att->gtype:null),
+		'gtypes'=> (isset($att->gtypes) ? explode(',',(string)$att->gtypes):null),
+		'note'=> (isset($att->note) ? (string)$att->note:null),
+		'separator'=> (isset($att->line) ? (string)$att->line:null),
+		'configs'=> (isset($att->configs) ? (string)$att->configs:null),
+		'valueformat'=> (isset($att->valueformat) ? (string)$att->valueformat:1),
+		'lblblock'=> (isset($att->labelblock) || $att->type == 'url' ? true:null),
+		'labelon'=> (isset($att->labelon) ? (string)$att->labelon:'Yes'),
+		'labeloff'=> (isset($att->labeloff) ? (string)$att->labeloff:'No'),
+		'rows'=> (isset($att->rows) ? (string)$att->rows:null),
+		'showlabel'=> (isset($att->showlabel) ? false:true),
+		'extlink'=> (isset($att->extlink) ? false:true),
+		'options'=>$options,
+		'selectors'=>$selectors,
+		'config'=>$config,
+		'def'=>$def,
+		'condition'=>$condition,
+		];
+		
+		return $vals;
+	}
+	
+	// string condition="{'texton':'1'}"
+	// converted array([texton]=>1)
+	protected static function stringToArray($val) 
+	{
+		$arr = str_replace('\'','"',$val);
+		$value = (array)json_decode($arr);
+		
+		return $value;
+	}
+	
+	protected static function condition($condition)
+	{
+		$arr = self::stringToArray($condition);
+		$field = array_keys($arr);
+		$check = array_values($arr);
+		
+		$cond=[];$conditions=[];
+		if( isset($check[0]) && isset($field[0]) ) 
+		{
+			$checks = explode('|',(string)$check[0]);
+			foreach($checks as $chk) {
+				$cond[] = ['name'=>$field[0],'value'=>$chk];
+			}
+		}
+		
+		$conditions['terms'][] = ['relation'=>'or','terms'=>$cond];
+		
+		return $conditions;
+	}
+	
+	protected static function options($vals) 
+	{
+		$arr = self::stringToArray($vals);
+		$options=[];$grp=[]; $out=null;
+		foreach($arr as $k=>$v) 
+		{
+			if( strstr($vals,'::') ) {
+				if( count($arr) > 1 ) {
+					$grp[] = call_user_func($k,$v);
+				}else{
+					$options = call_user_func($k,$v);
+				}
+			}else{
+				$options[$k] = $v;
+			}
+		}
+		
+		if( !empty($grp) ) {
+			$out = array_merge(...$grp);
+			
+		}else{
+			$out = $options;
+		}
+		
+		return $out;
+	}
+	
+	
+	
 
 	## File Scanner
 	protected function filelist($path, $filter=null, $getpath=false)
