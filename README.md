@@ -7,7 +7,7 @@ This class which serves as a simplified method to easily and quickly create widg
 * Place file `widgetloader.php` in `wp-content/mu-plugins` to autoload the class.
 * Place directory `elementor-widgets` in `wp-content`
 
-**Note** if widgets are created for distribution, `widgetloader.php` must be included, so for that purpose it is best place the file in the plugin package for the purpose of updating accurately, then load it via the plugin pilot file.
+**Note** if widgets are created for distribution, `widgetloader.php` must be included, so for that purpose it is best to place the file in the plugin package for the purpose of updating accurately, then load it via the plugin pilot file.
 
 That's it! All ready to use.
 
