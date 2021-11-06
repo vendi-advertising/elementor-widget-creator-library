@@ -1,20 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form icon="eicon-post-list" cat="basic">
-	<fields>
-		<fieldset id="tabimage" tab="tab" note="This is text description of the panel" label="An Image">
-		<field 
-		type="text" 
-		name="imagetxt" 
-		default="The Title" 
-		label="Image Title" 
-		/>
-		<field 
-		type="textarea" 
-		name="imagetext" 
-		default="Write stuff" 
-		label="Description" 
-		labelblock="1"
-		/>
-		</fieldset>
-	</fields>
+  <fields>
+    <fieldset id="tabimage" tab="tab" note="This is text description of the panel" label="An Image">
+      <field 
+        type="text" 
+        name="imagetxt" 
+        default="The Title" 
+        label="Image Title" 
+      />
+      <field 
+	     type="textarea" 
+	     name="imagetext" 
+	     rows="4"
+	     default="Write stuff" 
+	     label="Description" 
+	     labelblock="1"
+      />
+	    <field
+		   type="list"
+		   name="choices"
+		   options="{'':'None','choice1':'Choice 1','newchoice':'New Choice'}"
+		   default="choice1"
+		   label="Get A Choice"
+		   />
+	    <field
+		   type="url"
+		   name="thelink"
+		   condition="{'choices':'newchoice'}"
+		   hint="https://domainhere.com"
+		   default="{'url':'https://googly.com','is_external':'true','nofollow':'true'}"
+		   label="Set URL"
+		   />
+	    <field
+		   type="img"
+		   name="image"
+		   note="Add an image for some reason"
+		   label="The Image"
+		   />
+	    <field
+		   type="rich"
+		   name="wysiwyg"
+		   rows="4"
+		   label="The Editor"
+		   />
+	    
+	    <!-- A simple method to add a line separator between controls. not other attribute required -->
+	    <field type="hr" />
+	    
+	    <field
+		   type="num"
+		   name="numberfield"
+		   min="1"
+		   max="50"
+		   label="The Numbers"
+		   />
+	    <!-- see additional date config otions at fltpickr https://flatpickr.js.org/options/ -->
+	    <field
+		   type="date"
+		   name="setdate"
+		   configs="{'dateFormat':'m/d/Y H:m:s'}" 
+		   valueformat="m/d/Y H:m:s" 
+		   label="Set The Event"
+		   />
+	    <!-- radio button defaults to yes/no true/false so there is no need to add the option unless other values apply -->
+	    <field
+		   type="radio"
+		   name="radiobtn"
+		   options="{'1':'Yes','0':'No'}"
+		   label="A radio switch"
+		   />
+	    <!-- Elementor has this control set as deprecated -->
+	    <field
+		   type="icon"
+		   name="seticon"
+		   include="{'fa fa-facebook','fa fa-twitter'}"
+		   default="fa fa-twitter"
+		   />
+	    <!-- this field defaults to the shown option values so there is no need to add the options attribute unless other values apply -->
+	    <field
+		   type="choose"
+		   name="alignment"
+		   options="{'left':'Left|fa fa-align-left','center':Center|fa fa-align-center','right':Right|fa fa-align-right'}"
+		   label="Align Something"
+		   />
+	    <!-- no need for name attribute as an incremental number will be assigned as this type is detected -->
+	    <field
+		   type="readme"
+		   note="This is text or HTML that ddisplays &lt;strong&gt;where it is set&lt;/strong&gt;"
+		   />
+	    <!-- no need for show_label. as long as no label attribute is set, no label will display -->
+	    <field 
+		   type="hidden"
+		   name="hiddenfield"
+		   default="preset value"
+		   />
+    </fieldset>
+  </fields>
 </form>
