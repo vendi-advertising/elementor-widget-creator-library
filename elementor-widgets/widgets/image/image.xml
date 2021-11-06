@@ -54,6 +54,10 @@
 		   max="50"
 		   label="The Numbers"
 		   />
+     </fieldset>
+	  
+     <!-- Configs add a new slide panel within the content tab -->
+     <fieldset id="configs" tab="tab" label="Configurations">
 	    <!-- see additional date config otions at fltpickr https://flatpickr.js.org/options/ -->
 	    <field
 		   type="date"
@@ -88,6 +92,22 @@
 		   type="readme"
 		   note="This is text or HTML that ddisplays &lt;strong&gt;where it is set&lt;/strong&gt;"
 		   />
+	    
+	    <!-- Repeater controls method -->
+	    <field type="repeat" name="itemsrepeated" titlefield="fieldtexty" showlabel="false">
+		    <repeat
+			   type="text"
+			   name="fieldtexty"
+			   label="Repeating Name"
+			   />
+		    <repeat
+			    type="textarea"
+			    name="repeatingtext"
+			    rows="2"
+			    label="Stuff To Repeat"
+			    />
+	    </field>
+	     
 	    <!-- no need for show_label. as long as no label attribute is set, no label will display -->
 	    <field 
 		   type="hidden"
@@ -95,5 +115,32 @@
 		   default="preset value"
 		   />
     </fieldset>
+	  
+     <!-- STYLE tab group -->
+     <fieldset id="itemstyle" tab="tabstyle" note="Set the styling of stuff" label="Item Styling">
+	     <field
+		    type="controlgroup"
+		    gtype="bg"
+		    gtypes="{'classic','gradient'}"
+		    name="setbgcolor"
+		    label="Set background"
+		    />
+	     <field
+		    type="controlgroup"
+		    gtype="typo"
+		    name="fontyset"
+		    label="Font typography"
+		    />
+	     <field 
+		    type="color"
+		    name="btncolor"
+		    label="Color a button background"
+		    />
+	     <field 
+		    type="code"
+		    name="customcss"
+		    label="Custom CSS"
+		    />
+     </fieldset>
   </fields>
 </form>
