@@ -245,6 +245,11 @@ final class Cmse_Elementor_Widgets
 					$obj->add_control('hr'.$i,['type'=>$f->hr]);
 				}
 				else
+				// output HTML or plain text 
+				if( $type == 'readme' ) {
+					$obj->add_control('readme'.$i,['type'=>$f->readme,'raw'=>(string)$att->note]);
+				}
+				else
 				// repeat fields
 				if( $type == 'repeat' ) 
 				{
@@ -296,6 +301,11 @@ final class Cmse_Elementor_Widgets
 			else
 			if( $type == 'hr' ) {
 				$obj->add_control('hr'.$i,['type'=>$f->hr]);
+			}
+			else
+			// output HTML or plain text 
+			if( $type == 'readme' ) {
+				$obj->add_control('readme'.$i,['type'=>$f->readme,'raw'=>(string)$att->note]);
 			}
 			else
 			{
