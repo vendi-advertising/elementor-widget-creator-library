@@ -407,6 +407,7 @@ final class Cmse_Elementor_Widgets
 			$condition = self::condition((string)$att->condition);
 		}
 		
+		// array of field types that will default to label_block
 		$blockdef = ['url','code','rich','textarea','img'];
 			
 		$vals = (object)[
