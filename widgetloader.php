@@ -247,7 +247,12 @@ final class Cmse_Elementor_Widgets
 				else
 				// output HTML or plain text 
 				if( $type == 'readme' ) {
-					$obj->add_control('readme'.$i,['type'=>$f->readme,'raw'=>(string)$att->note]);
+					$obj->add_control('readme'.$i,[
+						'type'=>$f->readme,
+						'raw'=>(string)$att->note,
+						'content_classes'=>(isset($att->class) ? (string)$att->class:null),
+						'label'=>(isset($att->label) ? (string)$att->label:null)
+					]);
 				}
 				else
 				// repeat fields
@@ -305,7 +310,12 @@ final class Cmse_Elementor_Widgets
 			else
 			// output HTML or plain text 
 			if( $type == 'readme' ) {
-				$obj->add_control('readme'.$i,['type'=>$f->readme,'raw'=>(string)$att->note]);
+				$obj->add_control('readme'.$i,[
+				'type'=>$f->readme,
+				'raw'=>(string)$att->note,
+				'content_classes'=>(isset($att->class) ? (string)$att->class:null),
+				'label'=>(isset($att->label) ? (string)$att->label:null)
+				]);
 			}
 			else
 			{
