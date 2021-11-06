@@ -16,6 +16,21 @@
 	     label="Description" 
 	     labelblock="1"
       />
+	    <!-- A simple method to add a line separator between controls. not other attribute required -->
+	    <field type="hr" />
+		
+	    <!-- no need for name attribute as an incremental number will be assigned as this type is detected. 
+               because the increment value changes dynamically based on count of items, the dynamically created container class is not constant. if
+              a constant class is required for css instructions, add a name attribute which will output as elementor-control-readme-myclass
+            -->
+	    <field
+		   type="readme"
+		   note="Below are demos of many field types supplied by Elementor but not all, just because they are so many, however this function supports them all" 
+		   class="coolcss" 
+		   label="Note This Here" 
+		   />
+	    <field type="hr" />
+	    
 	    <field
 		   type="list"
 		   name="choices"
