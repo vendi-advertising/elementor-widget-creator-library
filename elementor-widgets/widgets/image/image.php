@@ -1,4 +1,7 @@
 <?php
+/**
+* your copyright and license data here
+*/
 defined('ABSPATH') || exit('CMSEnergizer.com');
 
 /*
