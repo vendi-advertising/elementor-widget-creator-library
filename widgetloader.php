@@ -3,7 +3,7 @@
 Plugin Name: CMSE Elementor Widget Developer Library
 Plugin URI: https://github.com/WebsiteDons/elementor-widget-creator-library
 Description: Develop widgets for Elementor with intuitive markup
-Version: 1.0.3
+Version: 1.0.4
 Author: CMSEnergizer.com
 Author URI: https://github.com/WebsiteDons/elementor-widget-creator-library
 Copyright 2014 CMSEnergizer.com
@@ -247,7 +247,7 @@ final class Cmse_Elementor_Widgets
 				else
 				// output HTML or plain text 
 				if( $type == 'readme' ) {
-					$obj->add_control('readme'.$i,[
+					$obj->add_control('readme-'.(isset($att->name) ? (string)$att->name:$i),[
 						'type'=>$f->readme,
 						'raw'=>(string)$att->note,
 						'content_classes'=>(isset($att->class) ? (string)$att->class:null),
@@ -310,7 +310,7 @@ final class Cmse_Elementor_Widgets
 			else
 			// output HTML or plain text 
 			if( $type == 'readme' ) {
-				$obj->add_control('readme'.$i,[
+				$obj->add_control('readme-'.(isset($att->name) ? (string)$att->name:$i),[
 				'type'=>$f->readme,
 				'raw'=>(string)$att->note,
 				'content_classes'=>(isset($att->class) ? (string)$att->class:null),
