@@ -386,7 +386,7 @@ final class Cmse_Elementor_Widgets
 			$condition = self::condition((string)$att->condition);
 		}
 		
-		$blockdef = ['url','code','rich','textarea'];
+		$blockdef = ['url','code','rich','textarea','img'];
 			
 		$vals = (object)[
 		'type'=> (string)$att->type,
