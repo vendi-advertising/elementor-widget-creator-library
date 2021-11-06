@@ -73,13 +73,7 @@
 		   options="{'1':'Yes','0':'No'}"
 		   label="A radio switch"
 		   />
-	    <!-- Elementor has this control set as deprecated -->
-	    <field
-		   type="icon"
-		   name="seticon"
-		   include="{'fa fa-facebook','fa fa-twitter'}"
-		   default="fa fa-twitter"
-		   />
+
 	    <!-- this field defaults to the shown option values so there is no need to add the options attribute unless other values apply -->
 	    <field
 		   type="choose"
