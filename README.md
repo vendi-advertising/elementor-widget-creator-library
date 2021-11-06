@@ -84,7 +84,9 @@ Elementor icons at https://elementor.github.io/elementor-icons/
 
 **Form attribs**
 * icon - required to properly display the widget in the list (see above link for elementor icons)
-* cat - required to determine the panel section where the widget will display
+* cat - required to determine the panel section where the widget will display. 
+    * Elementor core panel categories basic | pro-elements | general | wordpress | woocommerce-elements
+    * Your custom category must be set via constants **PANELID** and **PANELCAT**
 
 **Fieldset Attribs**
 * id - absolutely required to create unique panel ID
