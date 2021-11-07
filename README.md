@@ -205,7 +205,7 @@ If distributed by WordPress repository, once the updated package is submitted, a
 ---
 It's best to make the constant names very unique so there is no potential of collision with any other in use eg: **MYPLUGIN_CSSFILEURL** just be sure to change all instances in the file for accuracy.
 
-```
+```php
 define('CSSFILEURL', plugins_url().'/assets/elementor-alt.css');
 define('WIDGETPATH', WP_PLUGIN_DIR.'/plugin-name/widgets/');
 // if doing custom shapes
