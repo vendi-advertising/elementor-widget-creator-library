@@ -14,7 +14,7 @@ That's it! All ready to use.
 ## Notes
 If the directory paths will be changed from the default structure, edit `widgetloader.php` and change the `define()` constant values accordingly
 
-```
+```php
 define('CSSFILEURL', get_bloginfo('url').'/wp-content/elementor-widgets/elementor-alt.css');
 define('CSSID', 'elementor-alt');
 define('WIDGETPATH', WP_CONTENT_DIR.'/elementor-widgets/widgets/');
@@ -169,7 +169,7 @@ If creating a distributable plugin, do not place the `widgetloader.php` file in 
 
 `plugin-name.php`
 
-```
+```php
 <?php
 /**
 Plugin Name: My Great Plugin Name
