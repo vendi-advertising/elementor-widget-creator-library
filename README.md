@@ -159,6 +159,10 @@ If creating a distributable plugin, do not place the `widgetloader.php` file in 
             * countdown.php
             * countdown.xml
             * display.php 
+    * languages
+        * plugin-name.pot
+        * plugin-name-en_EM.po
+        * plugin-name-en_EN.mo
     * plugin-name.php
     
 ### Coding for plugin pilot
@@ -187,7 +191,7 @@ include_once __DIR__.'/includes/widgetloader.php';
 /*
 That's it!
 No need to register the plugin if no setting options will be applied. 
-Add new widgets to the widget directory and update the version value of the pilot file at the top where Version: 1.0.1
+Add new Elementor widgets to the widget directory and update the version value of the pilot file at the top where Version: 1.0.1
 If distributed by WordPress repository, once the updated package is submitted, all users will be alerted
 */
 ```
