@@ -145,7 +145,11 @@ Elementor icons at https://elementor.github.io/elementor-icons/
 
 * plugin-name
     * includes
+        * widgetloader.php 
     * widgets
-        * red
+        * image
+            * image.php
+            * image.xml
+            * display.php
     * plugin-name.php
     
