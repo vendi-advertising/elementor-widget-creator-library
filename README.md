@@ -195,3 +195,17 @@ Add new Elementor widgets to the widget directory and update the version value o
 If distributed by WordPress repository, once the updated package is submitted, all users will be alerted
 */
 ```
+
+### Edit contant values in class
+
+`includes/widgetloader.php`
+It's best to make the constant names very unique so there is no potential of collision with any other in use eg: **MYPLUGIN_CSSFILEURL** just be sure to change all instances in the file for accuracy.
+
+```
+define('CSSFILEURL', plugins_url().'/assets/elementor-alt.css');
+define('WIDGETPATH', WP_PLUGIN_DIR.'/plugin-name/widgets/');
+// if doing custom shapes
+define('COPYDIR', WP_PLUGIN_DIR.'/plugin-name/assets/svg');
+// if using custom field controls
+define('CUSTOMCTRL', WP_PLUGIN_DIR.'/includes/controls');
+```
