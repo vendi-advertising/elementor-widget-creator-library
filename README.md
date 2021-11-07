@@ -140,3 +140,12 @@ Elementor icons at https://elementor.github.io/elementor-icons/
 * shadow - box shadow group controls
 * shadowtext - text shadow group controls
 * cssfilter - css filter group controls
+
+# Creating a distributable plugin
+
+* plugin-name
+    * includes
+    * widgets
+        * red
+    * plugin-name.php
+    
