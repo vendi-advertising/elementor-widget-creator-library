@@ -3,7 +3,7 @@
 Plugin Name: CMSE Elementor Widget Developer Library
 Plugin URI: https://github.com/WebsiteDons/elementor-widget-creator-library
 Description: Develop widgets for Elementor with intuitive markup
-Version: 1.0.4
+Version: 1.0.5
 Author: CMSEnergizer.com
 Author URI: https://github.com/WebsiteDons/elementor-widget-creator-library
 Copyright 2014 CMSEnergizer.com
@@ -473,20 +473,26 @@ final class Cmse_Elementor_Widgets
 		$options=[];$grp=[]; $out=null;
 		foreach($arr as $k=>$v) 
 		{
+			// if array is compiled by external function
 			if( strstr($vals,'::') ) {
 				if( count($arr) > 1 ) {
 					$grp[] = call_user_func($k,$v);
 				}else{
 					$options = call_user_func($k,$v);
 				}
-			}else{
+			}else
+			// when alignment choose is set
+			if( strstr($vals, '|') ) {
+				list($title,$icon) = explode('|',$v);
+				$options[$k] = ['title'=>$title,'icon'=>$icon];
+			}
+			else{
 				$options[$k] = $v;
 			}
 		}
 		
 		if( !empty($grp) ) {
 			$out = array_merge(...$grp);
-			
 		}else{
 			$out = $options;
 		}
