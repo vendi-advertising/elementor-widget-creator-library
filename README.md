@@ -143,6 +143,10 @@ Elementor icons at https://elementor.github.io/elementor-icons/
 
 # Creating a distributable plugin
 
+If creating a distributable plugin, do not place the `widgetloader.php` file in mu-plugins. Follow the below structure. Be sure to set the paths in the constants and load the class via file include within the plugin pilot file. EG: `include_once __DIR__.'/includes/widgetloader.php';`
+
+**Directory structure**
+
 * plugin-name
     * includes
         * widgetloader.php 
@@ -151,5 +155,9 @@ Elementor icons at https://elementor.github.io/elementor-icons/
             * image.php
             * image.xml
             * display.php
+        * countdown
+            * countdown.php
+            * countdown.xml
+            * display.php 
     * plugin-name.php
     
