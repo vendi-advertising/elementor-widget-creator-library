@@ -161,3 +161,33 @@ If creating a distributable plugin, do not place the `widgetloader.php` file in 
             * display.php 
     * plugin-name.php
     
+### Coding for plugin pilot
+
+`plugin-name.php`
+
+```
+<?php
+/**
+Plugin Name: My Great Plugin Name
+Plugin URI: https://mysite.com
+Description: A package of great Elementor widgets.
+Version: 1.0.0
+Author: Me
+License:     GPLv2 or later
+License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+Requires at least: 4.9
+Requires PHP: 5.2.6
+*/
+
+defined('ABSPATH') || exit('A message to bad guys who try to access this file directly');
+
+//load widgetloader class
+include_once __DIR__.'/includes/widgetloader.php';
+
+/*
+That's it!
+No need to register the plugin if no setting options will be applied. 
+Add new widgets to the widget directory and update the version value of the pilot file at the top where Version: 1.0.1
+If distributed by WordPress repository, once the updated package is submitted, all users will be alerted
+*/
+```
