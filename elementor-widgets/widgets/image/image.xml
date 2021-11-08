@@ -130,7 +130,7 @@
 	     <field
 		    type="controlgroup"
 		    gtype="bg"
-		    gtypes="{'classic','gradient'}"
+		    gtypes="classic,gradient"
 		    name="setbgcolor"
 		    label="Set background"
 		    />
