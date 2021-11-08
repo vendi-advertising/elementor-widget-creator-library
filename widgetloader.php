@@ -57,6 +57,24 @@ final class Cmse_Elementor_Widgets
 
 						foreach($this->folderlist($cmse('widgetpath')) as $w) 
 						{
+							//make widget pilot file if not exists
+							if( !file_exists($cmse('widgetpath').$w.'/'.$w.'.php') ) {
+								$getfile = file_get_contents(__DIR__.'/copy/widget.php');
+								$getfile = str_replace('widgetname', $w, $getfile);
+								file_put_contents($cmse('widgetpath').$w.'/'.$w.'.php', $getfile);
+							}
+							// make XML file if not exists
+							if( !file_exists($cmse('widgetpath').$w.'/'.$w.'.xml') ) {
+								$getfile = file_get_contents(__DIR__.'/copy/widget.xml');
+								$getfile = str_replace('basic', $cmse('panelid'), $getfile);
+								file_put_contents($cmse('widgetpath').$w.'/'.$w.'.xml', $getfile);
+							}
+							// make display file if not exists
+							if( !file_exists($cmse('widgetpath').$w.'/display.php') ) {
+								$getfile = file_get_contents(__DIR__.'/copy/display.php');
+								$getfile = str_replace('widgetname', $cmse('panelid'), $getfile);
+								file_put_contents($cmse('widgetpath').$w.'/display.php', $getfile);
+							}
 							require_once($cmse('widgetpath').$w.'/'.$w.'.php');
 							$class = '\Cmse_'.$w.'_Widget';
 							$mgr->register_widget_type(new $class());
@@ -79,9 +97,11 @@ final class Cmse_Elementor_Widgets
 					*/
 					add_action('elementor/controls/controls_registered', function() {
 						global $cmse;
-						$mgr = \Elementor\Plugin::instance()->controls_manager;
-						require_once($cmse('customcontrol').'/control.php');
-						$mgr->register_control(\Cmse_FG::FG, new \Cmse_FG());
+						if( file_exists($cmse('customcontrol').'/control.php') ) {
+							$mgr = \Elementor\Plugin::instance()->controls_manager;
+							require_once($cmse('customcontrol').'/control.php');
+							$mgr->register_control(\Cmse_FG::FG, new \Cmse_FG());
+						}
 					});
 					
 					
@@ -92,27 +112,31 @@ final class Cmse_Elementor_Widgets
 					add_filter('elementor/shapes/additional_shapes', function($separator)
 					{
 						global $cmse;
-						$shapes = $this->filelist($cmse('copydir').'/','svg');
 						$sep=[];
-						if( !empty($shapes) ) 
+						if( file_exists($cmse('copydir')) )
 						{
-							foreach($shapes as $shape)
+							$shapes = $this->filelist($cmse('copydir').'/','svg');
+						
+							if( !empty($shapes) ) 
 							{
-								/*
-								retain a directory somewhere outside of the Elementor directory where the custom 
-								shapes will be held for copy. This is due to the method of folder delete when 
-								WordPress updates a plugin. All files are deleted
-								*/
-								if( !file_exists(SHAPESDIR.'/'.$shape) )
-									$this->copyFile(COPYDIR.'/'.$shape, SHAPESDIR.'/'.$shape);
+								foreach($shapes as $shape)
+								{
+									/*
+									retain a directory somewhere outside of the Elementor directory where the custom 
+									shapes will be held for copy. This is due to the method of folder delete when 
+									WordPress updates a plugin. All files are deleted
+									*/
+									if( !file_exists($cmse('shapesdir').'/'.$shape) )
+										$this->copyFile($cmse('copydir').'/'.$shape, $cmse('shapesdir').'/'.$shape);
 
-								$shape = str_replace('.svg','',$shape);
-								// set selector controls options
-								$sep[$shape] = [
-								'title'=>ucfirst($shape),
-								'has_flip'=>true,
-								'has_negative' => true
-								];
+									$shape = str_replace('.svg','',$shape);
+									// set selector controls options
+									$sep[$shape] = [
+									'title'=>ucfirst($shape),
+									'has_flip'=>true,
+									'has_negative' => true
+									];
+								}
 							}
 						}
 
