@@ -430,7 +430,7 @@ final class Cmse_Elementor_Widgets
 		}
 		
 		// array of field types that will default to label_block
-		$blockdef = ['url','code','rich','textarea','img','icon','gal','quad'];
+		$blockdef = ['url','code','rich','textarea','text','img','icon','gal','quad'];
 			
 		$vals = (object)[
 		'type'=> (string)$att->type,
