@@ -119,7 +119,7 @@ protected function _register_controls()
 	$this->end_controls_section();
 }
 
-/* the XML removes the need to ever view or edit the class by 
+/* the library removes the need to ever view or edit the class by 
 auto generating the controls from interpreted place holder attributes
 so the above code is written as the following which just loads the static fields() method
 and pass the widget name and object
