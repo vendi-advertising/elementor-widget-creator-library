@@ -15,16 +15,30 @@ That's it! All ready to use.
 If the directory paths will be changed from the default structure, edit `widgetloader.php` and change the `define()` constant values accordingly
 
 ```php
-define('CSSFILEURL', get_bloginfo('url').'/wp-content/elementor-widgets/elementor-alt.css');
-define('CSSID', 'elementor-alt');
-define('WIDGETPATH', WP_CONTENT_DIR.'/elementor-widgets/widgets/');
-define('CUSTOMCTRL', WP_CONTENT_DIR.'/elementor-widgets/controls');
-define('EMENTOR', WP_PLUGIN_DIR.'/elementor');
-define('SHAPESDIR', EMENTOR.'/assets/shapes');
-define('COPYDIR', WP_CONTENT_DIR.'/elementor-widgets/svg');
-define('PANELID', 'cmse-widgetcat');
-define('PANELCAT', 'CMSE Widgets'); 
-define('PANELICON', 'fa fa-plug');
+$const = (object)[
+	// set the prefered prefix which displays on the widget button 
+	// and title bar of the widget when in edit view
+	'widgetprefix'	=>	'CMSE',
+	
+	// widgets panel section ID, icon and name
+	'panelid'		=>	'cmse-widgetcat',
+	'panelcat'		=>	'CMSE Widgets',
+	'panelicon'		=>	'fa fa-plug',
+	
+	// text domain for the language ID
+	'textdomain'	=>	'plugin-name',
+	
+	// paths
+	'widgetpath'	=>	WP_CONTENT_DIR.'/elementor-widgets/widgets/',
+	'customcontrol'	=>	WP_CONTENT_DIR.'/elementor-widgets/controls',
+	
+	// if custom separator shapes are in use set path to elementor's separator folder
+	// and the path to your source where the shapes are stored
+	'copydir'		=>	WP_CONTENT_DIR.'/elementor-widgets/svg',
+	'shapesdir'		=>	WP_PLUGIN_DIR.'/elementor/assets/shapes',
+	'cssfileurl'	=>	get_bloginfo('url').'/wp-content/elementor-widgets/elementor-alt.css',
+	'cssid'			=>	'elementor-alt'
+	];
 ```
 
 ## Creating Widgets
@@ -196,22 +210,10 @@ If distributed by WordPress repository, once the updated package is submitted, a
 */
 ```
 
-### Edit contant values in class
+### Edit contant array values in below file
 
 ---
 
-`includes/widgetloader.php`
+`includes/constants.php`
 
 ---
-It's best to make the constant names very unique so there is no potential of collision with any other in use eg: **MYPLUGIN_CSSFILEURL** just be sure to change all instances in the file for accuracy.
-
-**Important** Do **not** change the WordPress core constants ie: `WP_PLUGIN_DIR` etc
-
-```php
-define('CSSFILEURL', plugins_url().'/assets/elementor-alt.css');
-define('WIDGETPATH', WP_PLUGIN_DIR.'/plugin-name/widgets/');
-// if doing custom shapes
-define('COPYDIR', WP_PLUGIN_DIR.'/plugin-name/assets/svg');
-// if using custom field controls
-define('CUSTOMCTRL', WP_PLUGIN_DIR.'/includes/controls');
-```
