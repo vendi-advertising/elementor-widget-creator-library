@@ -18,6 +18,7 @@ class Cmse_image_Widget extends \Elementor\Widget_Base
 	}
 	
 	public function get_title() {
+		global $cmse;
 		return $cmse('widgetprefix').' '.$this->get_name();
 	}
 	
