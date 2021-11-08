@@ -96,7 +96,7 @@ Elementor icons at https://elementor.github.io/elementor-icons/
 
 ### Comparison to PHP method
 
-To get the same controls result using the PHP methods would be
+To get the same controls result using the PHP methods would be (just the first text field)
 
 ```php
 protected function _register_controls() 
@@ -117,6 +117,17 @@ protected function _register_controls()
 	]);
 	
 	$this->end_controls_section();
+}
+
+/* the XML removes the need to ever view or edit the class by 
+auto generating the controls from interpreted place holder attributes
+so the above code is written as the following which just loads the static fields() method
+and pass the widget name and object
+*/
+protected function _register_controls() {
+	$icon = Cmse_Elementor_Widget::fields($this->get_name(),$this);
+		
+	return (object)$icon;
 }
 ```
 
