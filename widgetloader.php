@@ -24,7 +24,7 @@ use \Elementor\Shapes;
 
 final class Cmse_Elementor_Widgets 
 {
-	const VERSION = '1.0.1';
+	const VERSION = '1.0.8';
 	const MINIMUM_ELEMENTOR_VERSION = '2.0.0';
 	const MINIMUM_PHP_VERSION = '7.0';
 
