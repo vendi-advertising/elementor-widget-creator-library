@@ -163,6 +163,10 @@ If creating a distributable plugin, do not place the `widgetloader.php` file in 
 
 * plugin-name
     * includes
+        * copy
+            * widget.php
+            * widget.xml
+            * display.php
         * widgetloader.php 
         * constants.php
     * widgets
@@ -176,7 +180,7 @@ If creating a distributable plugin, do not place the `widgetloader.php` file in 
             * display.php 
     * languages
         * plugin-name.pot
-        * plugin-name-en_EM.po
+        * plugin-name-en_EN.po
         * plugin-name-en_EN.mo
     * plugin-name.php
     
