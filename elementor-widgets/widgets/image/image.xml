@@ -115,6 +115,16 @@
 			    rows="2"
 			    label="Stuff To Repeat"
 			    />
+		    <repeat 
+			type="icon" 
+			name="ficon" 
+			label="The Icon" 
+			/>
+			<repeat 
+			type="gal" 
+			name="agallery" 
+			label="The Gallery" 
+			/>
 	    </field>
 	     
 	    <!-- no need for show_label. as long as no label attribute is set, no label will display -->
