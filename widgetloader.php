@@ -140,34 +140,35 @@ final class Cmse_Elementor_Widgets
 	// just for simplification
 	protected static function ctr()
 	{
+		$e = new \Elementor\Controls_Manager;
 		$v = (object)[
-		'tab'=>\Elementor\Controls_Manager::TAB_CONTENT,
-		'tabstyle'=>\Elementor\Controls_Manager::TAB_STYLE,
-		'tabadv'=>\Elementor\Controls_Manager::TAB_ADVANCED,
-		'text'=>\Elementor\Controls_Manager::TEXT,
-		'textarea'=>\Elementor\Controls_Manager::TEXTAREA,
-		'rich'=>\Elementor\Controls_Manager::WYSIWYG,
-		'list'=>\Elementor\Controls_Manager::SELECT,
-		'list2'=>\Elementor\Controls_Manager::SELECT2,
-		'img'=>\Elementor\Controls_Manager::MEDIA,
-		'date'=>\Elementor\Controls_Manager::DATE_TIME,
-		'radio'=>\Elementor\Controls_Manager::SWITCHER,
-		'url'=>\Elementor\Controls_Manager::URL,
-		'num'=>\Elementor\Controls_Manager::NUMBER,
-		'repeat'=>\Elementor\Controls_Manager::REPEATER,
-		'color'=>\Elementor\Controls_Manager::COLOR,
-		'hidden'=>\Elementor\Controls_Manager::HIDDEN,
-		'quad'=>\Elementor\Controls_Manager::DIMENSIONS,
-		'code'=>\Elementor\Controls_Manager::CODE,
-		'font'=>\Elementor\Controls_Manager::FONT,
-		'icon'=>\Elementor\Controls_Manager::ICONS,
-		'anim'=>\Elementor\Controls_Manager::ANIMATION,
-		'animhover'=>\Elementor\Controls_Manager::HOVER_ANIMATION,
-		'slider'=>\Elementor\Controls_Manager::SLIDER,
-		'choose'=>\Elementor\Controls_Manager::CHOOSE,
-		'readme'=>\Elementor\Controls_Manager::RAW_HTML,
-		'gal'=>\Elementor\Controls_Manager::GALLERY,
-		'hr'=>\Elementor\Controls_Manager::DIVIDER,
+		'tab'=>$e::TAB_CONTENT,
+		'tabstyle'=>$e::TAB_STYLE,
+		'tabadv'=>$e::TAB_ADVANCED,
+		'text'=>$e::TEXT,
+		'textarea'=>$e::TEXTAREA,
+		'rich'=>$e::WYSIWYG,
+		'list'=>$e::SELECT,
+		'list2'=>$e::SELECT2,
+		'img'=>$e::MEDIA,
+		'date'=>$e::DATE_TIME,
+		'radio'=>$e::SWITCHER,
+		'url'=>$e::URL,
+		'num'=>$e::NUMBER,
+		'color'=>$e::COLOR,
+		'hidden'=>$e::HIDDEN,
+		'quad'=>$e::DIMENSIONS,
+		'code'=>$e::CODE,
+		'font'=>$e::FONT,
+		'icon'=>$e::ICONS,
+		'anim'=>$e::ANIMATION,
+		'animhover'=>$e::HOVER_ANIMATION,
+		'slider'=>$e::SLIDER,
+		'choose'=>$e::CHOOSE,
+		'readme'=>$e::RAW_HTML,
+		'gal'=>$e::GALLERY,
+		'hr'=>$e::DIVIDER,
+		'repeat'=>$e::REPEATER,
 		// control groups
 		'bg'=>\Elementor\Group_Control_Background::get_type(),
 		'border'=>\Elementor\Group_Control_Border::get_type(),
@@ -405,7 +406,7 @@ final class Cmse_Elementor_Widgets
 		}
 		
 		// array of field types that will default to label_block
-		$blockdef = ['url','code','rich','textarea','img'];
+		$blockdef = ['url','code','rich','textarea','img','icon'];
 			
 		$vals = (object)[
 		'type'=> (string)$att->type,
