@@ -120,7 +120,7 @@ protected function _register_controls()
 }
 
 /* the library removes the need to ever view or edit the class by 
-auto generating the controls from interpreted place holder attributes
+auto generating the controls from interpreted place holder attributes as written in the XML markup
 so the above code is written as the following which just loads the static fields() method
 and pass the widget name and object
 */
