@@ -164,6 +164,7 @@ If creating a distributable plugin, do not place the `widgetloader.php` file in 
 * plugin-name
     * includes
         * widgetloader.php 
+        * constants.php
     * widgets
         * image
             * image.php
