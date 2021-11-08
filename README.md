@@ -94,6 +94,32 @@ Elementor icons at https://elementor.github.io/elementor-icons/
 
 ![example-xml-field](https://github.com/WebsiteDons/elementor-widget-creator-library/blob/main/example-xml-field.jpg?raw=true "Example output")
 
+### Comparison to PHP method
+
+To get the same controls result using the PHP methods would be
+
+```php
+protected function _register_controls() 
+{
+	$this->start_controls_section('animage',
+	[
+	'label'=>'An Image',
+	'tab'=>\Elementor\Controls_Manager::TAB_CONTENT
+	]);
+	
+	$this->add_control('thefieldname', 
+	[
+	'type' => \Elementor\Controls_Manager::TEXT,
+	'label' => 'Image Title',
+	'description' => 'Some details about the field',
+	'placeholder' => 'The place holder text',
+	'default' => 'A default value'
+	]);
+	
+	$this->end_controls_section();
+}
+```
+
 ## XML Markup Attributes
 
 **Form attribs**
