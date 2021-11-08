@@ -38,4 +38,4 @@ $cmse = function($query)
 	];
 	
 	return $const->$query;
-};
+}; 
