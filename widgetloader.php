@@ -12,21 +12,10 @@ https://developers.elementor.com/elementor-controls/
 
 defined('ABSPATH') || exit('CMSEnergizer.com');
 
-/*
-Edit the constants as need to change paths and othe text values
-*/
-define('CSSFILEURL', get_bloginfo('url').'/wp-content/elementor-widgets/elementor-alt.css');
-define('CSSID', 'elementor-alt');
-define('WIDGETPATH', WP_CONTENT_DIR.'/elementor-widgets/widgets/');
-define('CUSTOMCTRL', WP_CONTENT_DIR.'/elementor-widgets/controls');
-define('EMENTOR', WP_PLUGIN_DIR.'/elementor');
-define('SHAPESDIR', EMENTOR.'/assets/shapes');
-define('COPYDIR', WP_CONTENT_DIR.'/elementor-widgets/svg');
-define('PANELID', 'cmse-widgetcat');
-define('PANELCAT', 'CMSE Widgets'); 
-define('PANELICON', 'fa fa-plug');
-// set the prefered prefix which displays on the widget button
-define('WIDGETPREFIX', 'CMSE');
+// make paths and variable changes in the loaded constants file.
+include_once __DIR__.'/constants.php';
+
+/*--- No need to edit below this line --*/
 
 
 // load shpaes class
@@ -61,11 +50,14 @@ final class Cmse_Elementor_Widgets
 					// Load And Register Widgets Detected
 					add_action('elementor/widgets/widgets_registered', function() 
 					{
+						// load global constants variable
+						global $cmse;
+						
 						$mgr = \Elementor\Plugin::instance()->widgets_manager;
 
-						foreach($this->folderlist(WIDGETPATH) as $w) 
+						foreach($this->folderlist($cmse('widgetpath')) as $w) 
 						{
-							require_once(WIDGETPATH.$w.'/'.$w.'.php');
+							require_once($cmse('widgetpath').$w.'/'.$w.'.php');
 							$class = '\Cmse_'.$w.'_Widget';
 							$mgr->register_widget_type(new $class());
 						}
@@ -74,9 +66,10 @@ final class Cmse_Elementor_Widgets
 					// Add Widget category to the editor slide panels to separate custom widgets
 					add_action('elementor/elements/categories_registered', function($cat) 
 					{
-						$cat->add_category(PANELID,[
-						'title'=>PANELCAT,
-						'icon'=>PANELICON,
+						global $cmse;
+						$cat->add_category($cmse('panelid'),[
+						'title'=>$cmse('panelcat'),
+						'icon'=>$cmse('panelicon'),
 						'active'=>false
 						]);
 					});
@@ -85,8 +78,9 @@ final class Cmse_Elementor_Widgets
 					See development docs at https://developers.elementor.com/creating-a-new-control/
 					*/
 					add_action('elementor/controls/controls_registered', function() {
+						global $cmse;
 						$mgr = \Elementor\Plugin::instance()->controls_manager;
-						require_once(CUSTOMCTRL.'/control.php');
+						require_once($cmse('customcontrol').'/control.php');
 						$mgr->register_control(\Cmse_FG::FG, new \Cmse_FG());
 					});
 					
@@ -97,7 +91,8 @@ final class Cmse_Elementor_Widgets
 					*/
 					add_filter('elementor/shapes/additional_shapes', function($separator)
 					{
-						$shapes = $this->filelist(COPYDIR.'/','svg');
+						global $cmse;
+						$shapes = $this->filelist($cmse('copydir').'/','svg');
 						$sep=[];
 						if( !empty($shapes) ) 
 						{
@@ -129,8 +124,9 @@ final class Cmse_Elementor_Widgets
 
 					// add css when in elementor editor for various adjustments if needed
 					add_action('elementor/editor/after_enqueue_styles', function() {
-						wp_register_style(CSSID, CSSFILEURL,[], self::VERSION);
-						wp_enqueue_style(CSSID);
+						global $cmse;
+						wp_register_style($cmse('cssid'), $cmse('cssfileurl'),[], self::VERSION);
+						wp_enqueue_style($cmse('cssid'));
 					});
 
 				}); // EOF action elementor/init
@@ -188,7 +184,8 @@ final class Cmse_Elementor_Widgets
 	## Load Fields From XML Markup
 	public static function fields($xml,$obj)
 	{
-		$formfile = simplexml_load_file(WIDGETPATH.'/'.$xml.'/'.$xml.'.xml');
+		global $cmse;
+		$formfile = simplexml_load_file($cmse('widgetpath').'/'.$xml.'/'.$xml.'.xml');
 		$form = $formfile->attributes();
 		$icon = (string)$form->icon;
 		$cat = (string)$form->cat;
