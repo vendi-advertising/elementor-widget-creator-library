@@ -196,6 +196,13 @@ protected function _register_controls() {
 
 If creating a distributable plugin, do not place the `widgetloader.php` file in mu-plugins. Follow the below structure. Be sure to set the paths in the constants and load the class via file include within the plugin pilot file. EG: `include_once __DIR__.'/includes/widgetloader.php';`
 
+### Widgets folder naming protocol
+
+* Use unique names to avoid conflict with class names EG: **mywidget_mixcloud**
+* Names must be **only** lowercase
+* Do **not** use special characters except for underscore
+* Do **not** use spaces
+
 **Directory structure**
 
 * plugin-name
