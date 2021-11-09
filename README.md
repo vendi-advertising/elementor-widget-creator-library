@@ -203,7 +203,7 @@ If creating a distributable plugin, do not place the `widgetloader.php` file in 
 * Do **not** use special characters except for underscore
 * Do **not** use spaces
 
-**Directory structure**
+### Directory structure
 
 * plugin-name
     * includes
