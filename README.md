@@ -214,13 +214,13 @@ If creating a distributable plugin, do not place the `widgetloader.php` file in 
         * widgetloader.php 
         * constants.php
     * widgets
-        * image
-            * image.php
-            * image.xml
+        * mywidget_image
+            * mywidget_image.php
+            * mywidget_image.xml
             * display.php
-        * countdown
-            * countdown.php
-            * countdown.xml
+        * mywidget_countdown
+            * mywidget_countdown.php
+            * mywidget_countdown.xml
             * display.php 
     * languages
         * plugin-name.pot
