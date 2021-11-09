@@ -13,7 +13,8 @@ https://developers.elementor.com/elementor-controls/
 defined('ABSPATH') || exit('CMSEnergizer.com');
 
 // make paths and variable changes in the loaded constants file.
-include_once __DIR__.'/constants.php';
+require_once __DIR__.'/constants.php';
+require_once __DIR__.'/Cmse_Widget_Base.php';
 
 /*--- No need to edit below this line --*/
 
