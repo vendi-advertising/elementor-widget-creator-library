@@ -1,6 +1,6 @@
 These files are the widget auto-builders. An empty folder can be placed in the widget dirctory and the library function will create the required files and you just need to edit the form controls with the XML file and the front end output file `display.php`
 
-### Snippet of the auto-generation process
+### Snippet of the auto-generation process from widgetloader.php
 
 ```php
 // Load And Register Widgets Detected
